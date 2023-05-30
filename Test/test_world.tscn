@@ -1,0 +1,74 @@
+[gd_scene load_steps=11 format=3 uid="uid://f5r44l5tqpwr"]
+
+[ext_resource type="Environment" uid="uid://tksq2mwaxi3h" path="res://Shared/world_environment.tres" id="1_oxd8x"]
+[ext_resource type="CameraAttributesPractical" path="res://Shared/camera_atrtibutes.tres" id="2_gxk25"]
+[ext_resource type="PackedScene" uid="uid://denf0s1b06tsu" path="res://Assets/Models/wall.glb" id="3_f4w1p"]
+[ext_resource type="PackedScene" uid="uid://dpfj8hmli56ni" path="res://Assets/Models/floor-detail.glb" id="4_tb8cm"]
+[ext_resource type="PackedScene" uid="uid://cwmd04m8u5sxn" path="res://Assets/Models/floor.glb" id="5_i30tm"]
+[ext_resource type="PackedScene" uid="uid://ogfpno7lsi05" path="res://Assets/Models/stones.glb" id="6_p76ig"]
+[ext_resource type="PackedScene" uid="uid://c5j81s24t3kdv" path="res://Assets/Models/column.glb" id="7_vbai8"]
+[ext_resource type="PackedScene" uid="uid://bsea74gstp13o" path="res://Assets/Models/wall-half.glb" id="8_b5cee"]
+[ext_resource type="PackedScene" uid="uid://3y1iyvi77rxi" path="res://Assets/Models/wood-support.glb" id="9_k5w6k"]
+[ext_resource type="PackedScene" uid="uid://3r8itwsxf0w7" path="res://Assets/Models/character-human.glb" id="10_loxmw"]
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.698415, -0.566273, 0.437665, 0, 0.611527, 0.791224, -0.715693, 0.552603, -0.4271, 0, 7, 0)
+shadow_enabled = true
+sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.806444, -0.130501, 0.576731, 0, 0.975342, 0.220697, -0.591311, -0.17798, 0.786559, 1.13649, 0.789059, 0.767392)
+current = true
+size = 4.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_oxd8x")
+camera_attributes = ExtResource("2_gxk25")
+
+[node name="Dungeon" type="Node3D" parent="."]
+
+[node name="floor-detail" parent="Dungeon" instance=ExtResource("4_tb8cm")]
+
+[node name="floor-detail3" parent="Dungeon" instance=ExtResource("4_tb8cm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
+
+[node name="floor-detail2" parent="Dungeon" instance=ExtResource("4_tb8cm")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -1, 0, -1)
+
+[node name="floor" parent="Dungeon" instance=ExtResource("5_i30tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+
+[node name="floor5" parent="Dungeon" instance=ExtResource("5_i30tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -2)
+
+[node name="floor6" parent="Dungeon" instance=ExtResource("5_i30tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, -2)
+
+[node name="floor2" parent="Dungeon" instance=ExtResource("5_i30tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+
+[node name="floor4" parent="Dungeon" instance=ExtResource("5_i30tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="floor3" parent="Dungeon" instance=ExtResource("5_i30tm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="stones" parent="Dungeon" instance=ExtResource("6_p76ig")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, -1)
+
+[node name="column" parent="Dungeon" instance=ExtResource("7_vbai8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1)
+
+[node name="wall-half" parent="Dungeon" instance=ExtResource("8_b5cee")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, 0)
+
+[node name="wood-support" parent="Dungeon" instance=ExtResource("9_k5w6k")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, -2, 0, -2)
+
+[node name="wall" parent="Dungeon" instance=ExtResource("3_f4w1p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1)
+
+[node name="character-human" parent="." instance=ExtResource("10_loxmw")]
+transform = Transform3D(2.98023e-08, 0, -1, 0, 1, 0, 1, 0, 2.98023e-08, -1, 0, 0)
