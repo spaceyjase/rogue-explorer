@@ -3,7 +3,9 @@
 [resource]
 background_mode = 1
 background_color = Color(0.356863, 0.356863, 0.356863, 1)
+ambient_light_source = 2
 tonemap_mode = 3
+tonemap_white = 1.2
 ssr_enabled = true
 ssr_max_steps = 16
 ssr_fade_out = 8.28212
@@ -11,7 +13,10 @@ ssao_enabled = true
 sdfgi_enabled = true
 sdfgi_use_occlusion = true
 sdfgi_energy = 0.7
-volumetric_fog_enabled = true
+glow_enabled = true
+glow_normalized = true
+glow_bloom = 0.2
+glow_blend_mode = 1
 volumetric_fog_density = 0.02
 volumetric_fog_length = 500.0
 adjustment_enabled = true

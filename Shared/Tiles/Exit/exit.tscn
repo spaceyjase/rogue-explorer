@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://dpm30y2xra4xn"]
+
+[ext_resource type="PackedScene" uid="uid://ch1b1puk6ybla" path="res://Assets/Models/stairs.glb" id="1_i7tiw"]
+[ext_resource type="Script" path="res://Shared/Tiles/Exit/exit.gd" id="1_yaktj"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ndx7x"]
+size = Vector3(0.5, 0.5, 0.5)
+
+[node name="Exit" type="Area3D" groups=["exit"]]
+collision_layer = 32
+script = ExtResource("1_yaktj")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_ndx7x")
+
+[node name="stairs" parent="." instance=ExtResource("1_i7tiw")]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 0, 0)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

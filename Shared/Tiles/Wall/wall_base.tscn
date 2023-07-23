@@ -1,0 +1,129 @@
+[gd_scene load_steps=10 format=3 uid="uid://wrnk2nw2mb88"]
+
+[ext_resource type="Script" path="res://Shared/Tiles/Wall/wall.gd" id="1_6fjpw"]
+[ext_resource type="AudioStream" uid="uid://cglpr0btt756m" path="res://Assets/SFX/scavengers_chop1.ogg" id="2_guqsb"]
+[ext_resource type="AudioStream" uid="uid://dj2tw6l4m0jpr" path="res://Assets/SFX/scavengers_chop2.ogg" id="3_tdmbv"]
+[ext_resource type="PackedScene" uid="uid://cfmg80lwbbd3m" path="res://Shared/Tiles/Wall/damage_wall.tscn" id="4_bsrsr"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_mxrcn"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8e4j7"]
+streams_count = 2
+stream_0/stream = ExtResource("2_guqsb")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_tdmbv")
+stream_1/weight = 1.0
+
+[sub_resource type="Animation" id="Animation_6k4v0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshParent:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_gja7d"]
+resource_name = "damage"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AudioStreamPlayer:playing")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("CPUParticles2D:emitting")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshParent:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.1, 0.14, 0.19, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.0583282, 0, 0.0268136), Vector3(0.0985485, 0.0323422, -0.0315681), Vector3(0.102189, 0.090306, 0.0718436), Vector3(0.164475, 0.0873054, 0.0324563), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkueb"]
+_data = {
+"RESET": SubResource("Animation_6k4v0"),
+"damage": SubResource("Animation_gja7d")
+}
+
+[node name="Wall" type="Area3D" groups=["wall"]]
+collision_layer = 16
+collision_mask = 5
+input_ray_pickable = false
+monitoring = false
+script = ExtResource("1_6fjpw")
+
+[node name="MeshParent" type="Node3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_mxrcn")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_8e4j7")
+bus = &"SFX"
+
+[node name="CPUParticles2D" parent="." instance=ExtResource("4_bsrsr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.213609, 0)
+lifetime = 0.8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_mkueb")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

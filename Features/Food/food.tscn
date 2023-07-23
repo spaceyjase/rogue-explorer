@@ -1,0 +1,40 @@
+[gd_scene load_steps=8 format=3 uid="uid://cl8vv7js84nub"]
+
+[ext_resource type="PackedScene" uid="uid://crr66plg1dv34" path="res://Features/Food/food_base.tscn" id="1_ue5g8"]
+[ext_resource type="PackedScene" uid="uid://cndygsx6w5yqh" path="res://Assets/Models/food/cherries.glb" id="2_ph6rj"]
+[ext_resource type="PackedScene" uid="uid://ctftv1svpa620" path="res://Assets/Models/food/apple.glb" id="3_1ishg"]
+[ext_resource type="PackedScene" uid="uid://di86wnrsjbnyt" path="res://Assets/Models/food/banana.glb" id="4_ot0ct"]
+[ext_resource type="AudioStream" uid="uid://ddgrg8b2h4ttd" path="res://Assets/SFX/scavengers_fruit1.ogg" id="5_1d45r"]
+[ext_resource type="AudioStream" uid="uid://br1ja88lcee6a" path="res://Assets/SFX/scavengers_fruit2.ogg" id="6_xbdry"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1wes0"]
+streams_count = 2
+stream_0/stream = ExtResource("5_1d45r")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("6_xbdry")
+stream_1/weight = 1.0
+
+[node name="Food" instance=ExtResource("1_ue5g8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+value = 10
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshParent" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="cherries" parent="MeshParent" index="0" instance=ExtResource("2_ph6rj")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0, 0)
+visible = false
+
+[node name="apple" parent="MeshParent" index="1" instance=ExtResource("3_1ishg")]
+transform = Transform3D(1.5, 0, 0, 0, 1.47346, 0.280918, 0, -0.280918, 1.47346, 0, -0.0359484, 0.0155106)
+visible = false
+
+[node name="banana" parent="MeshParent" index="2" instance=ExtResource("4_ot0ct")]
+transform = Transform3D(1, 0, 0, 0, 0.502764, -0.864424, 0, 0.864424, 0.502764, 0, 0, -0.0833022)
+visible = false
+
+[node name="AudioStreamPlayer" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_1wes0")

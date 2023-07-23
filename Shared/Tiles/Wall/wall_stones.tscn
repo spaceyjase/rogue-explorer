@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://d5updjgbjeyr"]
+
+[ext_resource type="PackedScene" uid="uid://wrnk2nw2mb88" path="res://Shared/Tiles/Wall/wall_base.tscn" id="1_knee2"]
+[ext_resource type="PackedScene" uid="uid://ogfpno7lsi05" path="res://Assets/Models/stones.glb" id="2_sdck7"]
+
+[node name="WallBase" instance=ExtResource("1_knee2")]
+
+[node name="stones" parent="MeshParent" index="0" instance=ExtResource("2_sdck7")]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://chjilos5yucww"]
+
+[ext_resource type="PackedScene" uid="uid://fohkhk2u7dxe" path="res://Shared/Tiles/OuterWall/outer_wall_base.tscn" id="1_youtx"]
+[ext_resource type="PackedScene" uid="uid://denf0s1b06tsu" path="res://Assets/Models/wall.glb" id="2_ixnef"]
+
+[node name="OuterWallBase" instance=ExtResource("1_youtx")]
+
+[node name="wall" parent="." index="1" instance=ExtResource("2_ixnef")]

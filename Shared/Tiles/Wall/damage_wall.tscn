@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://cfmg80lwbbd3m"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b20mb"]
+albedo_color = Color(0.443137, 0.466667, 0.556863, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_y20c8"]
+material = SubResource("StandardMaterial3D_b20mb")
+size = Vector3(0.2, 0.2, 0.2)
+
+[sub_resource type="Curve" id="Curve_6b2p5"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.38596, 0.0, 0, 0]
+point_count = 2
+
+[node name="CPUParticles2D" type="CPUParticles3D"]
+emitting = false
+amount = 16
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 1.0
+mesh = SubResource("BoxMesh_y20c8")
+emission_shape = 3
+emission_box_extents = Vector3(0.25, 0.25, 0.25)
+particle_flag_align_y = true
+particle_flag_rotate_y = true
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 2.0
+angular_velocity_min = 5.0
+angular_velocity_max = 5.0
+linear_accel_min = 1.0
+linear_accel_max = 2.0
+radial_accel_min = 1.0
+radial_accel_max = 1.0
+scale_amount_curve = SubResource("Curve_6b2p5")
+color = Color(0.443137, 0.466667, 0.556863, 1)

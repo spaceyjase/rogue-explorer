@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dldov2ct57exc"]
+
+[ext_resource type="Script" path="res://Shared/Count/count.gd" id="1_87vy6"]
+
+[resource]
+script = ExtResource("1_87vy6")
+minimum = 5
+maximum = 9

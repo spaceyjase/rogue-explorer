@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs66w7xdy6qbq"]
+
+[ext_resource type="PackedScene" uid="uid://cwmd04m8u5sxn" path="res://Assets/Models/floor.glb" id="1_4adji"]
+
+[node name="Tile" type="Node3D"]
+
+[node name="floor" parent="." instance=ExtResource("1_4adji")]

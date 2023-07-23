@@ -1,0 +1,8 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://dkhminkf11vkj"]
+
+[ext_resource type="Script" path="res://Shared/Count/count.gd" id="1_ver0i"]
+
+[resource]
+script = ExtResource("1_ver0i")
+minimum = 3
+maximum = 9

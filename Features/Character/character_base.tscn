@@ -1,0 +1,61 @@
+[gd_scene load_steps=6 format=3 uid="uid://bnsoeju8nc0c6"]
+
+[ext_resource type="Script" path="res://Features/Character/character_base.gd" id="1_4k3kt"]
+[ext_resource type="AudioStream" uid="uid://ctb7u5g63r4o4" path="res://Assets/SFX/scavengers_footstep1.ogg" id="2_tcnov"]
+[ext_resource type="AudioStream" uid="uid://ctmxt7mpsfbha" path="res://Assets/SFX/scavengers_footstep2.ogg" id="3_yrc50"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_t4lt2"]
+size = Vector3(0.8, 0.8, 0.8)
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_y25dr"]
+streams_count = 2
+stream_0/stream = ExtResource("2_tcnov")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("3_yrc50")
+stream_1/weight = 1.0
+
+[node name="CharacterBase" type="Area3D"]
+collision_layer = 0
+collision_mask = 0
+input_ray_pickable = false
+script = ExtResource("1_4k3kt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("BoxShape3D_t4lt2")
+
+[node name="RayCasts" type="Node3D" parent="."]
+
+[node name="Right" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0.75, 0, 0)
+collision_mask = 22
+collide_with_areas = true
+collide_with_bodies = false
+debug_shape_thickness = 5
+
+[node name="Left" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(-0.75, 0, 0)
+collision_mask = 22
+collide_with_areas = true
+debug_shape_thickness = 5
+
+[node name="Back" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, 0.75)
+collision_mask = 22
+collide_with_areas = true
+debug_shape_thickness = 5
+
+[node name="Forward" type="RayCast3D" parent="RayCasts"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+target_position = Vector3(0, 0, -0.75)
+collision_mask = 22
+collide_with_areas = true
+debug_shape_thickness = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_y25dr")
+volume_db = -10.0
+bus = &"SFX"

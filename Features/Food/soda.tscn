@@ -1,0 +1,35 @@
+[gd_scene load_steps=7 format=3 uid="uid://djyvtbp4rcpun"]
+
+[ext_resource type="PackedScene" uid="uid://crr66plg1dv34" path="res://Features/Food/food_base.tscn" id="1_r5clu"]
+[ext_resource type="PackedScene" uid="uid://vxwxc4bumq8" path="res://Assets/Models/food/sodaBottle.glb" id="2_ocem2"]
+[ext_resource type="PackedScene" uid="uid://ddphx3xwlgb4a" path="res://Assets/Models/food/sodaCan.glb" id="3_p418k"]
+[ext_resource type="AudioStream" uid="uid://lvhgqk6tqxxv" path="res://Assets/SFX/scavengers_soda1.ogg" id="4_humqy"]
+[ext_resource type="AudioStream" uid="uid://byes3q4ra30hv" path="res://Assets/SFX/scavengers_soda2.ogg" id="5_r4jbc"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_xli3e"]
+streams_count = 2
+stream_0/stream = ExtResource("4_humqy")
+stream_0/weight = 1.0
+stream_1/stream = ExtResource("5_r4jbc")
+stream_1/weight = 1.0
+
+[node name="Soda" instance=ExtResource("1_r5clu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+value = 20
+
+[node name="CollisionShape3D" parent="." index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="MeshParent" parent="." index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+
+[node name="sodaBottle" parent="MeshParent" index="0" instance=ExtResource("2_ocem2")]
+transform = Transform3D(1, 0, 0, 0, 0.859531, 0.511083, 0, -0.511083, 0.859531, 0, -0.133709, 0.0976567)
+visible = false
+
+[node name="sodaCan" parent="MeshParent" index="1" instance=ExtResource("3_p418k")]
+transform = Transform3D(1, 0, 0, 0, 0.938348, -0.345691, 0, 0.345691, 0.938348, 0, -0.118976, -0.0579739)
+visible = false
+
+[node name="AudioStreamPlayer" parent="." index="3"]
+stream = SubResource("AudioStreamRandomizer_xli3e")

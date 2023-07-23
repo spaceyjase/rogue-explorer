@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://bcn4eyh238n2h"]
+
+[ext_resource type="PackedScene" uid="uid://fohkhk2u7dxe" path="res://Shared/Tiles/OuterWall/outer_wall_base.tscn" id="1_yp4nf"]
+[ext_resource type="PackedScene" uid="uid://bsea74gstp13o" path="res://Assets/Models/wall-half.glb" id="2_08uq4"]
+
+[node name="OuterWallBase" instance=ExtResource("1_yp4nf")]
+
+[node name="wall-half" parent="." index="1" instance=ExtResource("2_08uq4")]
+transform = Transform3D(-1, 0, 8.74228e-08, 0, 1, 0, -8.74228e-08, 0, -1, 0, 0, 0)

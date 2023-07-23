@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c87rvg8bbtmhc"]
+
+[ext_resource type="PackedScene" uid="uid://bnsoeju8nc0c6" path="res://Features/Character/character_base.tscn" id="1_3e7pe"]
+[ext_resource type="Script" path="res://Features/Character/Player/player.gd" id="2_kq0x8"]
+[ext_resource type="PackedScene" uid="uid://3r8itwsxf0w7" path="res://Assets/Models/character-human.glb" id="3_saeao"]
+[ext_resource type="AudioStream" uid="uid://ctth8ybj38fyd" path="res://Assets/SFX/scavengers_die.ogg" id="4_jj0a7"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_vlwhh"]
+streams_count = 1
+stream_0/stream = ExtResource("4_jj0a7")
+stream_0/weight = 1.0
+
+[node name="Player" groups=["player"] instance=ExtResource("1_3e7pe")]
+collision_layer = 1
+collision_mask = 8
+script = ExtResource("2_kq0x8")
+
+[node name="character-human" parent="." index="2" instance=ExtResource("3_saeao")]
+
+[node name="HurtAudioStreamPlayer" type="AudioStreamPlayer" parent="." index="4"]
+stream = SubResource("AudioStreamRandomizer_vlwhh")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="DeadAudioStreamPlayer" type="AudioStreamPlayer" parent="." index="5"]
+stream = SubResource("AudioStreamRandomizer_vlwhh")
+volume_db = -5.0
+bus = &"SFX"
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,147 @@
+[gd_scene load_steps=20 format=3 uid="uid://h8limi3n6sdn"]
+
+[ext_resource type="Script" path="res://Features/GameManager/game_manager.gd" id="1_ojpl6"]
+[ext_resource type="PackedScene" uid="uid://1fm60cepvoid" path="res://Features/World/world.tscn" id="1_yl2nl"]
+[ext_resource type="Resource" uid="uid://c6ugqcphfjuba" path="res://Shared/Settings/game_settings.tres" id="2_jsft6"]
+[ext_resource type="PackedScene" uid="uid://bti8cqkcuuf6k" path="res://Features/Board/board.tscn" id="3_o672t"]
+[ext_resource type="PackedScene" uid="uid://c87rvg8bbtmhc" path="res://Features/Character/Player/player.tscn" id="4_l53b7"]
+[ext_resource type="PackedScene" uid="uid://dlluevar707fy" path="res://Features/Character/Enemy/ghost.tscn" id="5_178no"]
+[ext_resource type="Resource" uid="uid://dkhminkf11vkj" path="res://Shared/Count/food_count.tres" id="5_p3erp"]
+[ext_resource type="PackedScene" uid="uid://dceoa76wwfanr" path="res://Features/Character/Enemy/orc.tscn" id="6_ehn3s"]
+[ext_resource type="PackedScene" uid="uid://bkfaiomqruemj" path="res://Features/Character/Enemy/skeleton.tscn" id="7_cnrjt"]
+[ext_resource type="PackedScene" uid="uid://d1avsgov4bgf8" path="res://Features/Character/Enemy/vampire.tscn" id="8_5aig7"]
+[ext_resource type="PackedScene" uid="uid://8yt1cf0h0bau" path="res://Features/Character/Enemy/zombie.tscn" id="9_dg270"]
+[ext_resource type="PackedScene" uid="uid://djyvtbp4rcpun" path="res://Features/Food/soda.tscn" id="11_gk18d"]
+[ext_resource type="PackedScene" uid="uid://cl8vv7js84nub" path="res://Features/Food/food.tscn" id="11_iibvo"]
+[ext_resource type="AudioStream" uid="uid://buhe4biufqamp" path="res://Assets/SFX/scavengers_music.ogg" id="12_fcjct"]
+[ext_resource type="AudioStream" uid="uid://bniv4obyuumnx" path="res://Assets/SFX/points_ticker_bonus_score_reward_single_03.ogg" id="15_stney"]
+[ext_resource type="PackedScene" uid="uid://c417h3dieqnan" path="res://Features/HUD/hud.tscn" id="16_nqqhp"]
+
+[sub_resource type="Animation" id="Animation_rvfw3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-3, 0, 4)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/LevelCompleteAudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_13run"]
+resource_name = "level_complete"
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Player:position:y")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(2, 2),
+"update": 0,
+"values": [1.0, 20.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Audio/LevelCompleteAudioStreamPlayer:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Player:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.4, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, 6.28319, 0), Vector3(0, 12.5664, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j7wy5"]
+_data = {
+"RESET": SubResource("Animation_rvfw3"),
+"level_complete": SubResource("Animation_13run")
+}
+
+[node name="GameManager" type="Node3D"]
+script = ExtResource("1_ojpl6")
+settings = ExtResource("2_jsft6")
+
+[node name="World" parent="." instance=ExtResource("1_yl2nl")]
+
+[node name="Board" parent="." instance=ExtResource("3_o672t")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, -3)
+food_count = ExtResource("5_p3erp")
+enemy_tiles = Array[PackedScene]([ExtResource("5_178no"), ExtResource("6_ehn3s"), ExtResource("7_cnrjt"), ExtResource("8_5aig7"), ExtResource("9_dg270")])
+food_tiles = Array[PackedScene]([ExtResource("11_iibvo"), ExtResource("11_gk18d")])
+
+[node name="Audio" type="Node3D" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("12_fcjct")
+volume_db = -5.0
+autoplay = true
+bus = &"BGM"
+
+[node name="LevelCompleteAudioStreamPlayer" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("15_stney")
+volume_db = -5.0
+bus = &"SFX"
+
+[node name="Player" parent="." instance=ExtResource("4_l53b7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 0, 4)
+input_ray_pickable = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_j7wy5")
+}
+
+[node name="HUD" parent="." instance=ExtResource("16_nqqhp")]
+
+[connection signal="game_over" from="." to="HUD" method="_on_game_manager_game_over"]
+[connection signal="level_changed" from="." to="HUD" method="_on_game_manager_level_changed"]
+[connection signal="food_changed" from="Player" to="HUD" method="_on_player_food_changed"]
+[connection signal="pressed" from="HUD/StartButton" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="HUD/StartButton" to="HUD" method="_on_start_button_pressed"]
+
+[editable path="HUD"]

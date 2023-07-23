@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ni0idmbc50ix"]
+
+[ext_resource type="PackedScene" uid="uid://dpfj8hmli56ni" path="res://Assets/Models/floor-detail.glb" id="1_tfg8w"]
+
+[node name="Tile" type="Node3D"]
+
+[node name="floor-detail" parent="." instance=ExtResource("1_tfg8w")]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 0, 0)

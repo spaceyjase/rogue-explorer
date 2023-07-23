@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://1fm60cepvoid"]
+
+[ext_resource type="Environment" uid="uid://tksq2mwaxi3h" path="res://Shared/world_environment.tres" id="1_2j5pe"]
+[ext_resource type="CameraAttributesPractical" uid="uid://cmgdv5ceh0pqy" path="res://Shared/camera_atrtibutes.tres" id="2_bwpu8"]
+
+[node name="World" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.698415, -0.566273, 0.437666, 0, 0.611527, 0.791224, -0.715693, 0.552603, -0.4271, 0, 7, 0)
+light_color = Color(0.903598, 0.903598, 0.903598, 1)
+light_energy = 2.0
+shadow_enabled = true
+shadow_bias = 0.05
+shadow_blur = 0.8
+directional_shadow_mode = 1
+sky_mode = 1
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.75471, -0.277263, 0.594591, 0, 0.906308, 0.422618, -0.656059, -0.318954, 0.683999, 4, 3.8, 4.46)
+projection = 1
+current = true
+size = 7.5
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = ExtResource("1_2j5pe")
+camera_attributes = ExtResource("2_bwpu8")

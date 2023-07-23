@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://dceoa76wwfanr"]
+
+[ext_resource type="PackedScene" uid="uid://bnsoeju8nc0c6" path="res://Features/Character/character_base.tscn" id="1_36xrq"]
+[ext_resource type="Script" path="res://Features/Character/Enemy/enemy.gd" id="2_1y86p"]
+[ext_resource type="PackedScene" uid="uid://bi5cjdbtn0trq" path="res://Assets/Models/character-orc.glb" id="3_5odvu"]
+
+[node name="Orc" groups=["enemy"] instance=ExtResource("1_36xrq")]
+collision_layer = 4
+script = ExtResource("2_1y86p")
+damage = 2
+
+[node name="Right" parent="RayCasts" index="0"]
+collision_mask = 55
+
+[node name="Left" parent="RayCasts" index="1"]
+collision_mask = 55
+
+[node name="Back" parent="RayCasts" index="2"]
+collision_mask = 55
+
+[node name="Forward" parent="RayCasts" index="3"]
+collision_mask = 55
+
+[node name="character-orc" parent="." index="2" instance=ExtResource("3_5odvu")]

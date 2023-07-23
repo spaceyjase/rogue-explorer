@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bkfaiomqruemj"]
+
+[ext_resource type="PackedScene" uid="uid://bnsoeju8nc0c6" path="res://Features/Character/character_base.tscn" id="1_s6bpp"]
+[ext_resource type="Script" path="res://Features/Character/Enemy/enemy.gd" id="2_ssd1i"]
+[ext_resource type="PackedScene" uid="uid://f2sxbseqehsa" path="res://Assets/Models/characterSkeleton.glb" id="3_a3a2t"]
+
+[node name="Skeleton" groups=["enemy"] instance=ExtResource("1_s6bpp")]
+collision_layer = 4
+script = ExtResource("2_ssd1i")
+damage = 1
+
+[node name="Right" parent="RayCasts" index="0"]
+collision_mask = 55
+
+[node name="Left" parent="RayCasts" index="1"]
+collision_mask = 55
+
+[node name="Back" parent="RayCasts" index="2"]
+collision_mask = 55
+
+[node name="Forward" parent="RayCasts" index="3"]
+collision_mask = 55
+
+[node name="characterSkeleton" parent="." index="2" instance=ExtResource("3_a3a2t")]

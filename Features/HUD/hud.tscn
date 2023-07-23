@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://c417h3dieqnan"]
+
+[ext_resource type="FontFile" uid="uid://csqyu6nrqems4" path="res://Assets/Fonts/Kenney Blocks.ttf" id="1_kkqjg"]
+[ext_resource type="Script" path="res://Features/HUD/hud.gd" id="1_oce0w"]
+[ext_resource type="Theme" uid="uid://bjmjinrsujhlq" path="res://Shared/ui.tres" id="2_u6wof"]
+[ext_resource type="Texture2D" uid="uid://cx2fdvgr67k63" path="res://Assets/Textures/blue_button00.png" id="2_wccw1"]
+[ext_resource type="Texture2D" uid="uid://df6m787bwvm0p" path="res://Assets/Textures/blue_button01.png" id="3_fqq70"]
+
+[sub_resource type="InputEventAction" id="InputEventAction_leiut"]
+action = &"ui_accept"
+pressed = true
+
+[sub_resource type="Shortcut" id="Shortcut_jtbws"]
+events = [SubResource("InputEventAction_leiut")]
+
+[node name="HUD" type="CanvasLayer"]
+script = ExtResource("1_oce0w")
+
+[node name="Panel" type="Panel" parent="."]
+self_modulate = Color(1, 1, 1, 0.333333)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_right = 20
+
+[node name="FoodLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_u6wof")
+text = "Food: 20"
+vertical_alignment = 1
+
+[node name="DayLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+theme = ExtResource("2_u6wof")
+text = "day: 1"
+horizontal_alignment = 2
+vertical_alignment = 1
+
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -504.0
+offset_top = 256.0
+offset_right = 504.0
+offset_bottom = 403.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 5
+theme_override_constants/shadow_offset_y = 5
+theme_override_constants/shadow_outline_size = 5
+theme_override_fonts/font = ExtResource("1_kkqjg")
+theme_override_font_sizes/font_size = 96
+text = "rogue-explorer"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="StartButton" type="TextureButton" parent="."]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -95.0
+offset_top = 129.5
+offset_right = 95.0
+offset_bottom = 178.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(95, 50)
+shortcut = SubResource("Shortcut_jtbws")
+texture_normal = ExtResource("2_wccw1")
+texture_hover = ExtResource("3_fqq70")
+
+[node name="MessageLabel" type="Label" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_u6wof")
+theme_override_font_sizes/font_size = 64
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MessageTimer" type="Timer" parent="."]

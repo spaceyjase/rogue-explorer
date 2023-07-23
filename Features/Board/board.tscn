@@ -1,0 +1,23 @@
+[gd_scene load_steps=14 format=3 uid="uid://bti8cqkcuuf6k"]
+
+[ext_resource type="Script" path="res://Features/Board/board.gd" id="1_2rwb4"]
+[ext_resource type="Resource" uid="uid://dldov2ct57exc" path="res://Shared/Count/wall_count.tres" id="2_m4b5s"]
+[ext_resource type="PackedScene" uid="uid://dpm30y2xra4xn" path="res://Shared/Tiles/Exit/exit.tscn" id="3_g5mq3"]
+[ext_resource type="PackedScene" uid="uid://bs66w7xdy6qbq" path="res://Shared/Tiles/Floor/floor.tscn" id="3_vprfx"]
+[ext_resource type="PackedScene" uid="uid://c3qb8iw3ewbpg" path="res://Shared/Tiles/Floor/floor_detailed.tscn" id="4_qbd82"]
+[ext_resource type="PackedScene" uid="uid://dr3md6rypjuxy" path="res://Shared/Tiles/Wall/wall_rocks.tscn" id="4_t8ax6"]
+[ext_resource type="PackedScene" uid="uid://d5updjgbjeyr" path="res://Shared/Tiles/Wall/wall_stones.tscn" id="5_rv2ax"]
+[ext_resource type="PackedScene" uid="uid://bj657myiaoi81" path="res://Shared/Tiles/Floor/floor_detailed_rotated2.tscn" id="5_y3160"]
+[ext_resource type="PackedScene" uid="uid://ni0idmbc50ix" path="res://Shared/Tiles/Floor/floor_detailed_rotated.tscn" id="6_0jpd8"]
+[ext_resource type="PackedScene" uid="uid://fohkhk2u7dxe" path="res://Shared/Tiles/OuterWall/outer_wall_base.tscn" id="7_h62eq"]
+[ext_resource type="PackedScene" uid="uid://chjilos5yucww" path="res://Shared/Tiles/OuterWall/outer_wall_corner.tscn" id="8_7ph08"]
+[ext_resource type="PackedScene" uid="uid://bcn4eyh238n2h" path="res://Shared/Tiles/OuterWall/outer_wall_x.tscn" id="9_h3hsl"]
+[ext_resource type="PackedScene" uid="uid://dl6lj2drd548j" path="res://Shared/Tiles/OuterWall/outer_wall_y.tscn" id="10_5f1tu"]
+
+[node name="Board" type="Node3D"]
+script = ExtResource("1_2rwb4")
+wall_count = ExtResource("2_m4b5s")
+exit = ExtResource("3_g5mq3")
+wall_tiles = Array[PackedScene]([ExtResource("4_t8ax6"), ExtResource("5_rv2ax")])
+floor_tiles = Array[PackedScene]([ExtResource("3_vprfx"), ExtResource("4_qbd82"), ExtResource("5_y3160"), ExtResource("6_0jpd8")])
+outer_wall_tiles = Array[PackedScene]([ExtResource("7_h62eq"), ExtResource("8_7ph08"), ExtResource("10_5f1tu"), ExtResource("9_h3hsl")])
